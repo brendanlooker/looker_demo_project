@@ -16,6 +16,7 @@ group by 1
   }
 #   extends: [customer_behaviour]
 
+
   dimension: id {
     type: number
     sql: ${TABLE}.user_id ;;

@@ -356,6 +356,7 @@ view: users_test {
   measure: average_months_since_signip {
     type: average
     sql: ${months_since_signup} ;;
+    required_fields: [zip]
   }
 
   measure: user_count {

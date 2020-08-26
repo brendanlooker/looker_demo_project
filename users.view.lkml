@@ -16,8 +16,14 @@ extends: [users_etd]
   }
 
   dimension: age {
+    required_access_grants: [my_access]
     type: number
     sql: ${TABLE}.age ;;
+  }
+
+  measure: distinct_age_count {
+    type: count_distinct
+    sql: ${age} ;;
   }
 
 
@@ -265,6 +271,16 @@ extends: [users_etd]
     tiers: [1,3,6,12,18]
     sql: ${months_since_signup} ;;
   }
+
+  dimension: dashborard_access {
+    sql: 1 ;;
+    html:<div class="vis">
+          <div class="vis-single-value" style="background-color: #d6d6d6">
+          <p style="color: #707070; font-size: 30px; font-weight: bolder"> Dashboard 1 </p>
+          </div>
+          </div>
+          ;;
+    }
 
   dimension: email {
     type: string

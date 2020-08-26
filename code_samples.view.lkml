@@ -186,3 +186,6 @@ view: availability_snapshot {
 
   #   drill_fields: [department,category, name, inventory_items.id]
   # }
+
+
+

@@ -8,7 +8,7 @@ include: "*.view"
 
 
 explore: users_test {
-  fields: [id,age,age_tier,country,city]
+  # fields: [id,age,age_tier,country,city]
   persist_with: dv_datagroup
   sql_always_where: case when {% condition users_test.state_filter %} 'Arizona' {% endcondition %} then 1=1
     else {% condition users_test.state_filter %} state  {% endcondition %} end ;;

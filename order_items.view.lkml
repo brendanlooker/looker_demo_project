@@ -135,8 +135,17 @@ view: order_items {
     sql: ${sale_price};;
     # value_format_name:bb
     description: "Total Sale Price"
-#     html: ${{rendered_value}}M ;;
+    html: {{linked_value}} ;;
    value_format_name: usd_0
+  drill_fields: [users.state]
+  }
+
+  measure: total_dockers_sales {
+    type: sum
+    sql: ${sale_price};;
+    # value_format_name:bb
+    description: "Total Sale Price"
+    # filters: [products.is_dockers: "Yes"]
   }
 
   measure: average_sale_price {
