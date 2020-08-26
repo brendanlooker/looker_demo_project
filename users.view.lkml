@@ -16,7 +16,7 @@ extends: [users_etd]
   }
 
   dimension: age {
-    required_access_grants: [my_access]
+    # required_access_grants: [my_access]
     type: number
     sql: ${TABLE}.age ;;
   }
