@@ -311,6 +311,7 @@ view: order_items {
 
     drill_fields: [period_over_period_total_sales]
     link: {
+      icon_url: "https://looker.com/favicon.ico"
       label: "Explore Total Order Value - Flagship App Vs SPA"
       url: "{% assign vis= '{\"x_axis_gridlines\":false,
       \"y_axis_gridlines\":true,
