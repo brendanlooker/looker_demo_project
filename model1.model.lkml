@@ -33,3 +33,34 @@ datagroup: dv_datagroup {
 
 ###############################################
 ###############################################
+
+
+explore: +order_items {
+  aggregate_table: rollup__users_email {
+    query: {
+      dimensions: [
+        # "products.brand" is automatically filtered on in an access_filter.
+        # Uncomment to allow all possible filters to work with aggregate awareness.
+        # products.brand,
+        # "users.state" is automatically filtered on in an access_filter.
+        # Uncomment to allow all possible filters to work with aggregate awareness.
+        # users.state,
+        users.email
+      ]
+      measures: [percentile, total_sales]
+      filters: [
+        # "products.brand" is automatically filtered on in an access_filter in this query.
+        # Remove this filter to allow all possible filters to work with aggregate awareness.
+        products.brand: "%",
+        # "users.state" is automatically filtered on in an access_filter in this query.
+        # Remove this filter to allow all possible filters to work with aggregate awareness.
+        users.state: "%"
+      ]
+      timezone: "America/Los_Angeles"
+    }
+
+    materialization: {
+      persist_for: "24 hours"
+    }
+  }
+}

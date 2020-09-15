@@ -188,4 +188,3 @@ view: availability_snapshot {
   # }
 
 
-

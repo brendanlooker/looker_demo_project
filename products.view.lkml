@@ -17,6 +17,11 @@ filter: test_filter {
   type: yesno
 }
 
+measure: case_test {
+  type: number
+  sql: case when ${brand} = 'Dockers' then 1 when ${brand} = 'Calvin Klein' then 0 end ;;
+}
+
 measure: test_measure_filter {
   type: number
   sql: {% if test_filter._value == 'Yes' %}  1 {% elsif test_filter._value == 'No'%} 0 {% else %} 999 {% endif %};;
@@ -119,54 +124,54 @@ dimension: is_dockers {
 
 
 
-#     link: {
-#       label: "Google {{ value }}"
-#       url: "http://www.google.com/search?q={{ value | url_encode }}"
-#       icon_url: "http://google.com/favicon.ico"
-#     }
+    link: {
+      label: "Google {{ value }}"
+      url: "http://www.google.com/search?q={{ value | url_encode }}"
+      icon_url: "http://google.com/favicon.ico"
+    }
 
 
-#     link: {
-#       label: "Drill to Product Dashboard"
-#       url: "/dashboards/21?Brand={{ value }}"
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product Dashboard"
+      url: "/dashboards/1?Brand={{ value }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
-#     link: {
-#       label: "Drill to Product Dashboard2"
-#       url: "/dashboards/21?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}"
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product Dashboard2"
+      url: "/dashboards/1?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
-#     link: {
-#       label: "Drill to Product Dashboard3"
-#       url: "/dashboards/21?Brand={{ value }}&Department={{ _filters['products.department'] | url_encode }}"
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product Dashboard3"
+      url: "/dashboards/1?Brand={{ value }}&Department={{ _filters['products.department'] | url_encode }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
-#     link: {
-#       label: "Drill to Product Look"
-#       url: "/looks/44??&f[products.brand]={{ value | url_encode }}" # Path to Look content
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product Look"
+      url: "/looks/44??&f[products.brand]={{ value | url_encode }}" # Path to Look content
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
-#     link: {
-#       label: "Drill to Product - No Filter"
-#       url: "/looks/44?" # Path to Look content
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product - No Filter"
+      url: "/looks/44?" # Path to Look content
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
-#     link: {
-#       label: "Drill to Product ScatterPlot Look"
-#       url: "/looks/44??&f[products.brand]={{ value | url_encode }}" # Path to Look content
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product ScatterPlot Look"
+      url: "/looks/44??&f[products.brand]={{ value | url_encode }}" # Path to Look content
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
-#     link: {
-#       label: "Drill to Product Explore"
-#       url: "/explore/sso_demo/order_items?fields=products.brand,products.category,products.cost,products.department,products.distribution_center_id,products.product_count&limit=100"
-#       icon_url: "https://looker.com/favicon.ico"
-#     }
+    link: {
+      label: "Drill to Product Explore"
+      url: "/explore/sso_demo/order_items?fields=products.brand,products.category,products.cost,products.department,products.distribution_center_id,products.product_count&limit=100"
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
 
 
@@ -179,8 +184,14 @@ dimension: is_dockers {
 #     # <span style="font-size: 18px">{{ rendered_value }}</span>;;
 
 
-    drill_fields: [department,category, name, inventory_items.id, order_items.created_date]
+#     drill_fields: [department,category, name, inventory_items.id, order_items.created_date]
+      drill_fields: [department]
+
+
+
   }
+
+
 
 
   parameter: dummy_filter {
@@ -301,7 +312,7 @@ dimension: is_dockers {
   # }
 
   set: my_set {
-    fields: [department,retail_price]
+    fields: [department,retail_price,product_count]
   }
   set: product_set {
     fields: [brand_contact_email, department, category,bb_email]
