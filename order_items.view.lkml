@@ -5,6 +5,10 @@ view: order_items {
 
   view_label: "Orders"
 
+  filter: tes {
+    type: date
+  }
+
   dimension: id {
     primary_key: yes
     type: number

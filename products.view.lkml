@@ -8,6 +8,24 @@ view: products {
     sql: ${TABLE}.id ;;
   }
 
+  # dimension: time {
+  #   datatype: datetime
+  #   sql: ${current_time} ;;
+  #   html: <img src="https://www.looker.com/favicon.ico" /> {{value|date: "%d.%m.%Y, %H:%m:%S"}} ;;
+  # }
+
+  dimension_group: current {
+    type: time
+    timeframes: [raw,date,week_of_year, time]
+    sql: current_timestamp ;;
+
+  }
+
+  dimension: dependency {
+    sql: 1 ;;
+    html:{{ products.current_raw._value | date: "%U" }};;
+  }
+
  filter: my_test_date {
    type: date
  }
@@ -131,23 +149,23 @@ dimension: is_dockers {
     }
 
 
-    link: {
-      label: "Drill to Product Dashboard"
-      url: "/dashboards/1?Brand={{ value }}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
+    # link: {
+    #   label: "Drill to Product Dashboard"
+    #   url: "/dashboards-next/1?Brand={{ value }}"
+    #   icon_url: "https://looker.com/favicon.ico"
+    # }
 
     link: {
       label: "Drill to Product Dashboard2"
-      url: "/dashboards/1?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}"
+      url: "/dashboards-next/1?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}&Department={{ _filters['products.department'] | url_encode }}&OrderDate={{ _filters['order_items.tes'] | url_encode }}"
       icon_url: "https://looker.com/favicon.ico"
     }
 
-    link: {
-      label: "Drill to Product Dashboard3"
-      url: "/dashboards/1?Brand={{ value }}&Department={{ _filters['products.department'] | url_encode }}"
-      icon_url: "https://looker.com/favicon.ico"
-    }
+    # link: {
+    #   label: "Drill to Product Dashboard3"
+    #   url: "/dashboards-next/1?Brand={{ value }}&Department={{ _filters['products.department'] | url_encode }}"
+    #   icon_url: "https://looker.com/favicon.ico"
+    # }
 
     link: {
       label: "Drill to Product Look"
@@ -155,17 +173,17 @@ dimension: is_dockers {
       icon_url: "https://looker.com/favicon.ico"
     }
 
-    link: {
-      label: "Drill to Product - No Filter"
-      url: "/looks/44?" # Path to Look content
-      icon_url: "https://looker.com/favicon.ico"
-    }
+    # link: {
+    #   label: "Drill to Product - No Filter"
+    #   url: "/looks/44?" # Path to Look content
+    #   icon_url: "https://looker.com/favicon.ico"
+    # }
 
-    link: {
-      label: "Drill to Product ScatterPlot Look"
-      url: "/looks/44??&f[products.brand]={{ value | url_encode }}" # Path to Look content
-      icon_url: "https://looker.com/favicon.ico"
-    }
+    # link: {
+    #   label: "Drill to Product ScatterPlot Look"
+    #   url: "/looks/44??&f[products.brand]={{ value | url_encode }}" # Path to Look content
+    #   icon_url: "https://looker.com/favicon.ico"
+    # }
 
     link: {
       label: "Drill to Product Explore"

@@ -22,7 +22,7 @@ datagroup: my_data_group {
   sql_trigger: select current_date ;;
 }
 
-explore: users_test_1 {}
+explore: users_test_1 {cancel_grouping_fields: [users_test_1.users_test_state]}
 
 explore: users_insights {}
 
