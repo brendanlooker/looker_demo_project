@@ -1,7 +1,7 @@
 view: users_test_1 {
   derived_table: {
-    sql_trigger_value: select current_date ;;
-    distribution_style: all
+    # sql_trigger_value: select current_date ;;
+    # distribution_style: all
     sql: SELECT
         users_test.email  AS "users_test.email",
         users_test.first_name  AS "users_test.first_name",

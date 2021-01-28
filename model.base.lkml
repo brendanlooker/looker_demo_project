@@ -6,7 +6,7 @@ include: "*.view"
 
 # datagroup: bb_ramp_case_study_default_datagroup {
 
-
+explore: test_running_total {}
 explore: users_test {
   # fields: [id,age,age_tier,country,city]
   persist_with: dv_datagroup
@@ -197,4 +197,24 @@ explore: customer_behaviour_fact {
 }
 
 
-explore: inventory_items {}
+explore: inventory_items {
+  view_name: inventory_items
+  label: "Inventory Raw"
+
+  join: products {
+    type: left_outer
+    sql_on: ${products.id}=${inventory_items.product_id} ;;
+    relationship: many_to_one
+  }
+  }
+
+explore: distribution_centers {
+  view_name: distribution_centers
+  label: "Distribution Raw"
+
+  join: products {
+    type: left_outer
+    sql_on: ${products.id}=${distribution_centers.id} ;;
+    relationship: many_to_one
+  }
+}

@@ -3,10 +3,26 @@ view: order_items {
   sql_table_name: public.order_items ;;
 
 
+  # sql_table_name: {% if created_date._in_query and period._value > 10 %}
+  # public.order_items
+  # {% else %}
+  # public.order_items
+  # {% endif %}
+
+  # ;;
+
+
   view_label: "Orders"
 
   filter: tes {
     type: date
+  }
+
+  dimension: period {
+    # hidden: yes
+    type: duration_day
+    sql_start: {% date_start created_date %} ;;
+    sql_end: current_date ;;
   }
 
   dimension: id {
@@ -142,6 +158,18 @@ view: order_items {
     html: {{linked_value}} ;;
    value_format_name: usd_0
   drill_fields: [users.state]
+  }
+
+
+  measure: total_sales_v2 {
+    type: sum
+    sql: ${sale_price};;
+    # value_format_name:bb
+    description: "Total Sale Price"
+    html: {{linked_value}} ;;
+    value_format_name: usd_0
+    drill_fields: [users.state]
+    # filters: [users.gender: "Female"]
   }
 
   measure: total_dockers_sales {

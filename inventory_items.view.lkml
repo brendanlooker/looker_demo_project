@@ -6,7 +6,7 @@ view: inventory_items {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
-    view_label: "Products"
+    # view_label: "Products"
   }
 
   dimension: cost {

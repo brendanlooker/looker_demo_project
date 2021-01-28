@@ -8,6 +8,7 @@ view: events {
   }
 
   dimension: browser {
+    label: "@{test}"
     type: string
     sql: ${TABLE}.browser ;;
   }

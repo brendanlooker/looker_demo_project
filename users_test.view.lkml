@@ -1,3 +1,4 @@
+include: "acronyms.view"
 view: users_test {
   sql_table_name: public.users ;;
 
@@ -5,6 +6,20 @@ view: users_test {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+  }
+
+
+
+  extends: [acronyms]
+
+  dimension: arr {
+    type: number
+    sql: ${TABLE}.arr ;;
+  }
+
+  dimension: mrr {
+    type: number
+    sql: ${TABLE}.mrr ;;
   }
 
   dimension: age {

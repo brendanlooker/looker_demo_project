@@ -6,3 +6,5 @@ project_name: "looker_demo"
 # local_dependency: {
 #   project: "name_of_other_project"
 # }
+
+constant: test {value:"Test"}
