@@ -1,4 +1,4 @@
-
+# include: "/users.view.lkml"
 view: products {
   sql_table_name: public.products ;;
   # sql_table_name: public.{% date_start date_filter123 %}.products ;;
@@ -14,9 +14,18 @@ view: products {
     type: date
   }
 
+  filter: my_date_filter {
+    type: date_time
+  }
+
+  # dimension: my_date_filter_offset {
+  #   datatype: datetime
+  #   sql: ${my_date_filter} - INTERVAL '24 hours' ;;
+  # }
+
   filter: test123 {
-    suggest_explore:events
-    suggest_dimension: id
+    suggest_explore:users_fact
+    suggest_dimension: users_fact.state
   }
 
 dimension: department_v2 {
@@ -111,7 +120,7 @@ dimension: department_v2 {
 
     link: {
       label: "Drill to Product Dashboard2"
-      url: "/dashboards-next/1?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}&Department={{ _filters['products.department'] | url_encode }}"
+      url: "/dashboards/1?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}&Department={{ _filters['products.department'] | url_encode }}"
       icon_url: "https://looker.com/favicon.ico"
     }
 

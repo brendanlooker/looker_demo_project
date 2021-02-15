@@ -3,7 +3,7 @@ connection: "snowlooker"
 # include all the views
 include: "test.lkml"
 include: "*.view"
-# include: "product_dash.dashboard.lookml"
+include: "demo.dashboard.lookml"
 include: "model.base.lkml"
 
 explore: events {
