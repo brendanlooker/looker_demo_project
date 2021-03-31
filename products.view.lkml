@@ -24,14 +24,26 @@ view: products {
   # }
 
   filter: test123 {
-    suggest_explore:users_fact
-    suggest_dimension: users_fact.state
+    # suggest_explore:users_fact
+    suggest_dimension: brand
+  }
+
+  dimension: is_test123 {
+    type: yesno
+    sql: {% condition test123 %} ${brand} {% endcondition %};;
   }
 
 dimension: department_v2 {
   sql: case when ${brand} = 'Dockers' and ${category} in ('Accessories')
   then 'Doc' else ${brand} end;;
 }
+
+# measure: total_sales {
+#   type: sum
+#   sql: ${order_items.sale_price} ;;
+#   filters: [is_test123: "Yes"]
+#   # filters: [test123: ""]
+# }
 
   dimension: brand {
     label: "brand"
@@ -103,7 +115,11 @@ dimension: department_v2 {
       }
     }
 
-
+    link: {
+      label: "Google {{ value }}"
+      url: "@{test2}"
+      icon_url: "http://google.com/favicon.ico"
+    }
 
     link: {
       label: "Google {{ value }}"
@@ -111,24 +127,17 @@ dimension: department_v2 {
       icon_url: "http://google.com/favicon.ico"
     }
 
-
-    # link: {
-    #   label: "Drill to Product Dashboard"
-    #   url: "/dashboards-next/1?Brand={{ value }}"
-    #   icon_url: "https://looker.com/favicon.ico"
-    # }
-
     link: {
       label: "Drill to Product Dashboard2"
       url: "/dashboards/1?Brand={{ value }}&Category={{ _filters['products.category'] | url_encode }}&Department={{ _filters['products.department'] | url_encode }}"
       icon_url: "https://looker.com/favicon.ico"
     }
 
-    # link: {
-    #   label: "Drill to Product Dashboard3"
-    #   url: "/dashboards-next/1?Brand={{ value }}&Department={{ _filters['products.department'] | url_encode }}"
-    #   icon_url: "https://looker.com/favicon.ico"
-    # }
+    link: {
+      label: "Drill to Inventory Dashboard"
+      url: "/dashboards-next/1?Brand={{ value }}&Department={{ _filters['products.department'] | url_encode }}"
+      icon_url: "https://looker.com/favicon.ico"
+    }
 
     link: {
       label: "Drill to Product Look"
@@ -193,9 +202,10 @@ dimension: department_v2 {
     html:{{ products.current_raw._value | date: "%U" }};;
   }
 
-  filter: my_test_date {
-    type: date
-  }
+  # filter: my_test_date {
+  #   type: date
+  #   sql: {% condition my_test_date.date_start %}${current_date}{%endcondition%} ;;
+  # }
 
 
   filter: test_filter {

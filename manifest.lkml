@@ -8,3 +8,5 @@ project_name: "looker_demo"
 # }
 
 constant: test {value:"Test"}
+
+constant: test2 {value: "1"}

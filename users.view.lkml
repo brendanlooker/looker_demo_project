@@ -15,6 +15,11 @@ extends: [users_etd]
 
   }
 
+  dimension: const_test {
+    type: number
+    sql: @{test2} ;;
+  }
+
   dimension: age {
     # required_access_grants: [my_access]
     type: number
@@ -329,6 +334,16 @@ extends: [users_etd]
     sql: ${TABLE}.state ;;
   }
 
+  dimension: state_us {
+    map_layer_name: us_states
+    sql: ${TABLE}.state ;;
+  }
+
+  dimension: state_uk {
+    map_layer_name: uk_postcode_areas
+    sql: left(${TABLE}.zip,2) ;;
+  }
+
   dimension: user_location {
     type: location
     sql_latitude: ${latitude} ;;
@@ -344,6 +359,31 @@ extends: [users_etd]
   dimension: zip {
     type: zipcode
     sql: ${TABLE}.zip ;;
+  }
+
+  parameter: country_param {
+    type: unquoted
+    allowed_value: {
+      label: "US"
+      value: "US"
+    }
+    allowed_value: {
+      label: "UK"
+      value: "UK"
+    }
+  }
+
+  dimension: dynamic {
+    sql: {% if country_param._parameter_value == 'US' %}
+            ${state_us}
+         {% else %}
+            ${state_uk}
+         {% endif %};;
+  }
+
+  dimension: uk_post_map {
+    map_layer_name: uk_postcode_areas
+    sql: left(${TABLE}.zip,2) ;;
   }
 
   dimension: is_new_user {

@@ -49,6 +49,14 @@ view: order_items {
 
   }
 
+  # dimension: number_of_sundays {
+  #   type: date_day_of_week
+  #   sql_start: ${created_date} ;;
+  #   sql_end: current_date ;;
+
+  # }
+
+
   dimension: created_mth {
     type: yesno
     sql: ${created_month} ;;
