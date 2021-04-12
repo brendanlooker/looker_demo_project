@@ -115,11 +115,11 @@ dimension: department_v2 {
       }
     }
 
-    link: {
-      label: "Google {{ value }}"
-      url: "@{test2}"
-      icon_url: "http://google.com/favicon.ico"
-    }
+    # link: {
+    #   label: "Google {{ value }}"
+    #   url: "@{test2}"
+    #   icon_url: "http://google.com/favicon.ico"
+    # }
 
     link: {
       label: "Google {{ value }}"

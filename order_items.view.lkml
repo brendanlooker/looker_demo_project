@@ -12,6 +12,12 @@ view: order_items {
   # ;;
 
 
+  measure: avg_sales {
+    type: number
+    sql:  avg(${sale_price}) over (partition by ${created_date});;
+  }
+
+
   view_label: "Orders"
 
   filter: tes {

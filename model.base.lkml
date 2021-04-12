@@ -58,10 +58,10 @@ explore: order_items {
   #   user_attribute:city
   # }
 
-  access_filter: {
-    field: users.state
-    user_attribute: state
-  }
+  # access_filter: {
+  #   field: users.state
+  #   user_attribute: state
+  # }
 
   access_filter: {
     field: products.brand
@@ -172,6 +172,21 @@ group_label: "SSO Demo"
 
 
 ####################################
+# Place in `model1` model
+# explore: +customer_behaviour_fact {
+#   aggregate_table: rollup__products_brand {
+#     query: {
+#       dimensions: [products.brand]
+#       measures: [order_items.total_sales]
+#       filters: [products.brand]
+#       timezone: "America/Los_Angeles"
+#     }
+
+#     materialization: {
+#       persist_for: "24 hours"
+#     }
+#   }
+# }
 
 
 explore: customer_behaviour_fact {
