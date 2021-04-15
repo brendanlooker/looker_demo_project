@@ -1,6 +1,7 @@
 # include: "/users.view.lkml"
 
 ### This is a comment ###
+### This is another comment ###
 view: products {
   sql_table_name: public.products ;;
   # sql_table_name: public.{% date_start date_filter123 %}.products ;;
