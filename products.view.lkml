@@ -1,4 +1,6 @@
 # include: "/users.view.lkml"
+
+### This is a comment ###
 view: products {
   sql_table_name: public.products ;;
   # sql_table_name: public.{% date_start date_filter123 %}.products ;;
@@ -7,6 +9,16 @@ view: products {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+  }
+
+  filter: brand_filter {
+
+    suggest_dimension: brand
+  }
+
+  dimension: test_brand {
+    sql: {% parameter brand_filter %} ;;
+    # html: {% parameter brand_filter %} ;;
   }
 
   filter: date_filter123 {

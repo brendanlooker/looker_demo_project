@@ -51,9 +51,9 @@ explore: inventory_items_extd {
 
 
 
-named_value_format: bb {
-  value_format: "[>=1000000]\"\"0.00,,\" M\";[<=-1000000]\"\"-0.00,,\" M\";[>=1000]\"\"0.00,\" K\";\"\"0.00"
-}
+# named_value_format: bb {
+#   value_format: "[>=1000000]\"\"0.00,,\" M\";[<=-1000000]\"\"-0.00,,\" M\";[>=1000]\"\"0.00,\" K\";\"\"0.00"
+# }
 
 
 datagroup: dv_datagroup {
